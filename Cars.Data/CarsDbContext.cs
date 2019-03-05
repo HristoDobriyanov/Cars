@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Cars.Data
 {
-    public class Class1
+    public class CarsDbContext : DbContext
     {
     }
 }

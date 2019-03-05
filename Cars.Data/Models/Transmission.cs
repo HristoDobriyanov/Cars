@@ -1,6 +1,8 @@
 ﻿namespace Cars.Data.Models
 {
-    public class Transmission
+    public enum Transmission
     {
+        Automatic,
+        Manual
     }
 }

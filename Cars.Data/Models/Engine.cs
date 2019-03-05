@@ -8,6 +8,8 @@
 
         public double Capacity { get; set; }
 
+        public FuelType FuelType { get; set; }
+
         public int Cylinders { get; set; }
 
         public int HorsePower { get; set; }

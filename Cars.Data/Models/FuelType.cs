@@ -1,6 +1,10 @@
 ﻿namespace Cars.Data.Models
 {
-    public class FuelType
+    public enum FuelType
     {
+         Petrol,
+         Diesel,
+         Gas,
+         Electric
     }
 }
