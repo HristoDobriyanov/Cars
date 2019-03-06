@@ -25,7 +25,7 @@ namespace Cars.Data.Models
 
         public ICollection<CarDealership> CarDealerships { get; set; }
 
-        public int LicensePlateIde { get; set; }
+        public int? LicensePlateIde { get; set; }
         public LicensePlate LicensePlate { get; set; }
     }
 }

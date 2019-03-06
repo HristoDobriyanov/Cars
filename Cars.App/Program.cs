@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cars.Data;
+using System;
 
 namespace Cars.App
 {
@@ -6,7 +7,12 @@ namespace Cars.App
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var context = new CarsDbContext();
+
+            context.Database.EnsureCreated();
+
+            Console.WriteLine();
+
         }
     }
 }

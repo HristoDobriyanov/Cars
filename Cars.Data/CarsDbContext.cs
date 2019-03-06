@@ -6,6 +6,18 @@ namespace Cars.Data
 {
     public class CarsDbContext : DbContext
     {
+        public CarsDbContext()
+        {
+
+        }
+
+        public CarsDbContext(DbContextOptions options)
+            :base(options)
+        {
+
+        }
+
+
         public DbSet<Make> Makes { get; set; }
 
         public DbSet<Car> Cars { get; set; }
@@ -26,9 +38,16 @@ namespace Cars.Data
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            builder.Entity<Car>()
+                .HasOne(c => c.LicensePlate)
+                .WithOne(lp => lp.Car)
+                .HasForeignKey<LicensePlate>(lp => lp.CarId);
+
+            builder.Entity<CarDealership>()
+                .HasKey(cd => new { cd.CarId, cd.DealershipId });
+
         }
     }
 }
