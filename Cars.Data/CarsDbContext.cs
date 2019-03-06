@@ -24,7 +24,6 @@ namespace Cars.Data
             {
                 builder.UseSqlServer(@"Server=DESKTOP-R4OGD90\SQLEXPRESS;Database=Cars;Integrated Security=True");
             }
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
