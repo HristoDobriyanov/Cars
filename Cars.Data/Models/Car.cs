@@ -6,6 +6,7 @@ namespace Cars.Data.Models
 {
     public class Car
     {
+        
         public int Id { get; set; }
 
         public int MakeId { get; set; }
@@ -23,7 +24,7 @@ namespace Cars.Data.Models
 
         public DateTime ProductionYear { get; set; }
 
-        public ICollection<CarDealership> CarDealerships { get; set; }
+        public ICollection<CarDealership> CarDealerships { get; set; } = new List<CarDealership>();
 
         public int? LicensePlateIde { get; set; }
         public LicensePlate LicensePlate { get; set; }

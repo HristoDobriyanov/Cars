@@ -10,7 +10,7 @@ namespace Cars.Data.Models
 
         public string Name { get; set; }
 
-        public ICollection<CarDealership> CarDealerships { get; set; }
+        public ICollection<CarDealership> CarDealerships { get; set; } = new List<CarDealership>();
 
         
     }

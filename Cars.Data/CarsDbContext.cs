@@ -45,8 +45,16 @@ namespace Cars.Data
                 .WithOne(lp => lp.Car)
                 .HasForeignKey<LicensePlate>(lp => lp.CarId);
 
+            builder.Entity<Car>()
+                .HasMany(c => c.CarDealerships)
+                .WithOne(cd => cd.Car)
+                .HasForeignKey(cd => cd.CarId);
+
+
             builder.Entity<CarDealership>()
                 .HasKey(cd => new { cd.CarId, cd.DealershipId });
+
+
 
         }
     }
