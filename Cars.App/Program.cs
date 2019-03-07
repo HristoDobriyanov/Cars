@@ -2,6 +2,8 @@
 using Cars.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
+using System.Text;
 
 namespace Cars.App
 {
@@ -9,16 +11,32 @@ namespace Cars.App
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             var context = new CarsDbContext();
             //ResetDatabase(context);
 
             var cars = context
                 .Cars
+                .Include(c => c.Engine)
+                .Include(c => c.Make)
+                .Include(c => c.LicensePlate)
                 .Include(c => c.CarDealerships)
                 .ThenInclude(cd => cd.Dealership)
-                .ToArrayAsync();
+                .OrderBy(c => c.ProductionYear)
+                .ToArray();
+
+            foreach (var car in cars)
+            {
+                Console.WriteLine($"{car.Make.Name} {car.Model}");
+                Console.WriteLine($"--Fuel: {car.Engine.FuelType}");
+                Console.WriteLine($"--Transmission: {car.Transmission}");
+                var licensePlate = car.LicensePlate != null ? $"--{car.LicensePlate.Number}" : "No Plate";
+                Console.WriteLine($"Plate number: {licensePlate}");
+                Console.WriteLine("---------------------------");
+            }
 
 
+            Console.WriteLine();
            
         }
 
@@ -83,7 +101,7 @@ namespace Cars.App
                 new Car
                 {
                     Engine = engines[1],
-                    Make = makes[5],
+                    Make = makes[4],
                     Doors = 4,
                     Model = "Москвич-423",
                     ProductionYear = new DateTime(1954, 1, 1),
