@@ -10,7 +10,7 @@ namespace Cars.Data.Models
 
         public string Number { get; set; }
 
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
         public Car Car { get; set; }
     }
 }

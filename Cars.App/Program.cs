@@ -11,13 +11,10 @@ namespace Cars.App
         {
             var context = new CarsDbContext();
 
-            ResetDatabase(context);
 
+            ResetDatabase(context);
             Console.WriteLine("Enter");
             Console.ReadLine();
-
-
-
         }
 
         private static void ResetDatabase(CarsDbContext context)
@@ -67,8 +64,7 @@ namespace Cars.App
                 }
             };
 
-
-            var cars = new [] 
+            var cars = new[]
             {
                 new Car
                 {
@@ -99,7 +95,63 @@ namespace Cars.App
                 },
 
             };
+            context.Cars.AddRange(cars);
 
+
+            var dealerships = new[]
+            {
+                new Dealership
+                {
+                    Name = "SoftUni-Auto",
+                },
+
+                 new Dealership
+                {
+                    Name = "Fast and Furious Auto"
+                },
+            };
+            context.Dealerships.AddRange(dealerships);
+
+            var carDealerships = new[]
+            {
+                new CarDealership
+                {
+                    Car =  cars[0],
+                    Dealership = dealerships[0]
+                },
+                new CarDealership
+                {
+                    Car =  cars[1],
+                    Dealership = dealerships[1]
+                },
+                new CarDealership
+                {
+                    Car =  cars[0],
+                    Dealership = dealerships[1]
+                }
+            };
+            context.CarDealerships.AddRange(carDealerships);
+
+            var licensePlates = new[]
+            {
+                new LicensePlate
+                {
+                    Number = "CB1234AB"
+                },
+
+                new LicensePlate
+                {
+                    Number = "CB4567AB"
+                },
+
+                new LicensePlate
+                {
+                    Number = "BP9999AA"
+                },
+            };
+            context.LicensePlates.AddRange(licensePlates);
+
+            context.SaveChanges();
         }
     }
 }

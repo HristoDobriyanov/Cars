@@ -29,6 +29,8 @@ namespace Cars.Data
 
         public DbSet<Dealership> Dealerships { get; set; }
 
+        public DbSet<CarDealership> CarDealerships { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
