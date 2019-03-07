@@ -25,13 +25,28 @@ namespace Cars.App
                 .OrderBy(c => c.ProductionYear)
                 .ToArray();
 
+            
+            context.SaveChanges();
+
+
+
             foreach (var car in cars)
             {
                 Console.WriteLine($"{car.Make.Name} {car.Model}");
+
+
+                Console.WriteLine($"--Dealership:");
+
+                foreach (var carDealership in car.CarDealerships)
+                {
+                    var dealership = carDealership.Dealership;
+                    Console.WriteLine("----" + dealership.Name);
+                }
+
                 Console.WriteLine($"--Fuel: {car.Engine.FuelType}");
                 Console.WriteLine($"--Transmission: {car.Transmission}");
                 var licensePlate = car.LicensePlate != null ? $"--{car.LicensePlate.Number}" : "No Plate";
-                Console.WriteLine($"Plate number: {licensePlate}");
+                Console.WriteLine($"--Plate number: {licensePlate}");
                 Console.WriteLine("---------------------------");
             }
 
