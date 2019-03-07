@@ -1,4 +1,5 @@
 ﻿using Cars.Data.Models;
+using Cars.Data.Models.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -40,22 +41,11 @@ namespace Cars.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Car>()
-                .HasOne(c => c.LicensePlate)
-                .WithOne(lp => lp.Car)
-                .HasForeignKey<LicensePlate>(lp => lp.CarId);
+            builder.ApplyConfiguration(new CarConfiguration()); 
 
-            builder.Entity<Car>()
-                .HasMany(c => c.CarDealerships)
-                .WithOne(cd => cd.Car)
-                .HasForeignKey(cd => cd.CarId);
+            builder.ApplyConfiguration(new CarDealershipConfiguration());
 
-
-            builder.Entity<CarDealership>()
-                .HasKey(cd => new { cd.CarId, cd.DealershipId });
-
-
-
+            builder.ApplyConfiguration(new EngineConfiguration());
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Cars.Data.Models
@@ -10,6 +11,7 @@ namespace Cars.Data.Models
 
         public Car Car { get; set; }
 
+ 
         public int DealershipId { get; set; }
 
         public Dealership Dealership { get; set; }
