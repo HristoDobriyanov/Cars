@@ -10,11 +10,16 @@ namespace Cars.App
         static void Main(string[] args)
         {
             var context = new CarsDbContext();
+            //ResetDatabase(context);
+
+            var cars = context
+                .Cars
+                .Include(c => c.CarDealerships)
+                .ThenInclude(cd => cd.Dealership)
+                .ToArrayAsync();
 
 
-            ResetDatabase(context);
-            Console.WriteLine("Enter");
-            Console.ReadLine();
+           
         }
 
         private static void ResetDatabase(CarsDbContext context)
